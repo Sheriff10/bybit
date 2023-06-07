@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Footer from "../general_pages/footer";
 import Header from "../general_pages/header";
 export default function Signup() {
@@ -17,30 +18,30 @@ export default function Signup() {
                            <div className="form-body">
                               <span>
                                  Already have an account? {" "}
-                                 <a href="#" className="text-pr text-bold">
+                                 <Link to="/login" className="text-pr text-bold">
                                     Log In
-                                 </a>
+                                 </Link>
                               </span>
                               <br /> <br />
                               <div className="form-group">
                                  <input
                                     type="text"
                                     className="form-control"
-                                    placeholder="email"
+                                    placeholder="Email"
                                  />
                               </div>
                               <div className="form-group">
                                  <input
                                     type="password"
                                     className="form-control"
-                                    placeholder="password"
+                                    placeholder="Password"
                                  />
                               </div>
                               <div className="form-group">
                                  <input
                                     type="password"
                                     className="form-control"
-                                    placeholder="confirm password"
+                                    placeholder="Confirm password"
                                  />
                               </div>
                               <div className="form-group p-2">

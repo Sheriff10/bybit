@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Footer from "../general_pages/footer";
 import Header from "../general_pages/header";
 export default function Login() {
@@ -17,9 +18,9 @@ export default function Login() {
                            <div className="form-body">
                               <span>
                                  New to Bybit?{" "}
-                                 <a href="#" className="text-pr text-bold">
+                                 <Link to="/signup" className="text-pr text-bold">
                                     Sign up
-                                 </a>
+                                 </Link>
                               </span>
                               <br /> <br />
                               <div className="form-group">

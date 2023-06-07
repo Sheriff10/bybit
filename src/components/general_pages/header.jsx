@@ -1,5 +1,6 @@
 import React from "react";
 import { FaBars, FaSearch, } from "react-icons/fa"
+import { Link } from "react-router-dom";
 
 export default function Header() {
    const toggleMenu = () => {
@@ -22,8 +23,8 @@ export default function Header() {
                            <div className="cancel">
                               <span onClick={toggleMenu}>X</span>
                            </div>
-                           <a href="#" className="btn"> Login</a>
-                           <a href="#" className="btn bg-pr"> Signup</a>
+                           <Link to="/login" className="btn"> Login</Link>
+                           <Link to="/signup" className="btn bg-pr"> Signup</Link>
                         </div>
                         <a href="">Home</a>
                         <a href="">Market</a>
@@ -51,12 +52,12 @@ export default function Header() {
                </div>
                <div className="col">
                   <div className="btn-con">
-                     <a href="#" className="btn btn-sm">
+                     <Link to="/login" className="btn btn-sm">
                         Login
-                     </a>
-                     <a href="#" className="btn btn-sm">
+                     </Link>
+                     <Link to="/signup" className="btn btn-sm">
                         Signup
-                     </a>   
+                     </Link>   
                   </div>
                </div>
                <div className="col kk">
