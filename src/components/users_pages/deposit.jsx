@@ -1,13 +1,74 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { FaRegCopy } from "react-icons/fa";
+import authorizeUser from "../authentication/auth";
 import UserHeader from "./userHeader";
 
 export default function Deposit() {
+   const [address, setaddress] = useState("bep20AddressHere");
+   const [coinList, setCoinList] = useState([]);
+   const [coin, setCoin] = useState("btc");
+   const [amount, setAmount] = useState("");
+   const token = window.localStorage.getItem("token");
    const DumNetwork = [
-      { network_name: "BEP20" },
-      { network_name: "ERC20" },
-      { network_name: "TRC20" },
+      { network_name: "BTC", address: "BTCAddressHere" },
+      { network_name: "BEP20", address: "bep20AddressHere" },
+      { network_name: "ERC20", address: "2rc20AddressHere" },
+      { network_name: "TRC20", address: "Trc20AddressHere" },
    ];
+
+   useEffect(() => {
+      authorizeUser()
+      getTokenList();
+   }, []);
+   const handleAddressChange = (adrs, newActive) => {
+      setaddress(adrs);
+      toggleActiveAddress(newActive);
+   };
+   const toggleActiveAddress = (newActive) => {
+      console.log(newActive);
+      const getActiveAddress = document.querySelector(
+         ".deposit .active-address"
+      );
+      getActiveAddress.classList.remove("active-address");
+      // add active-address class to the clicked one
+      document.querySelector(newActive).classList.add("active-address");
+   };
+
+   const getTokenList = () => {
+      axios
+         .get(`${window.api}/user/spot`, {
+            headers: {
+               "x-auth-token": token,
+               "Content-Type": "application/json",
+            },
+         })
+         .then((res) => {
+            console.log(res)
+            setCoinList(res.data);
+         })
+         .catch((error) => {
+            console.log(error);
+         });
+   };
+   const data = { amount, coin };
+   const handleDeposit = (e) => {
+      e.preventDefault();
+      axios
+         .post(`${window.api}/user/deposit`, data, {
+            headers: {
+               "x-auth-token": token,
+               "Content-Type": "application/json",
+            },
+         })
+         .then((res) => {
+            console.log(res);
+            window.alert("deposit Successfull");
+         })
+         .catch((error) => {
+            console.log(error);
+         });
+   };
    return (
       <div className="deposit">
          <div className="container">
@@ -17,20 +78,39 @@ export default function Deposit() {
                      <span className="text-bold">Deposit</span>
                   </div>
                   <div className="d-select-coin">
-                     <select name="coin" id="coin">
-                        <option value="BTC" defaultChecked> Select Coin</option>
-                        <option value="BTC"> BTC</option>
-                        <option value="USDT">USDT</option>
-                        <option value="TRX">TRX</option>
-                        <option value="BNB">BNB</option>
-                        <option value="DOGE">DOGE</option>
+                     <select
+                        name="coin"
+                        id="coin"
+                        onChange={(e) => setCoin(e.target.value)}
+                     >
+                        {coinList.map((i, index) => (
+                           <option value={i.symbol} key={index}>
+                              {" "}
+                              {i.symbol}
+                           </option>
+                        ))}
                      </select>
                   </div>
                   <div className="d-networks">
                      <span className="text-bold">Network</span>
                      <div className="n-wrap d-flex">
                         {DumNetwork.map((i, index) => (
-                           <small className="text-pr" key={index}>{i.network_name}</small>
+                           <small
+                              className={
+                                 i.network_name === "BTC"
+                                    ? `${i.network_name} active-address text-pr`
+                                    : `${i.network_name} text-pr`
+                              }
+                              onClick={() =>
+                                 handleAddressChange(
+                                    i.address,
+                                    "." + i.network_name
+                                 )
+                              }
+                              key={index}
+                           >
+                              {i.network_name}
+                           </small>
                         ))}
                      </div>
                   </div>
@@ -44,9 +124,7 @@ export default function Deposit() {
                      <div className="d-address-con">
                         <div className="row">
                            <div className="col-8 aa">
-                              <small>
-                                 0x631d75e4f86aaa2e43596eefbb69bb1b601eba90
-                              </small>
+                              <small>{address}</small>
                            </div>
                            <div className="col text-right">
                               <span>
@@ -60,7 +138,7 @@ export default function Deposit() {
                      </div>
                   </div>
                   <div className="d-notice">
-                    <small className="text-bold p-2">Notice</small>
+                     <small className="text-bold p-2">Notice</small>
                      <ul>
                         <li>
                            Lorem ipsum dolor sit amet consectetur adipisicing
@@ -81,20 +159,35 @@ export default function Deposit() {
                      </ul>
                   </div>
                   <div className="d-btn-con">
-                     <div className="row">
-                        <div className="col-6 p-2">
-                           <button className="btn col-12 text-bold btn-pr-outline">
-                              {" "}
-                              Copy Address
-                           </button>
+                     <form action="" onSubmit={handleDeposit}>
+                        <div className="row">
+                           <div className="col-12">
+                              <input
+                                 type="number"
+                                 className="form-control"
+                                 placeholder="Enter amount sent"
+                                 onChange={(e) => setAmount(e.target.value)}
+                                 value={amount}
+                                 required
+                              />
+                           </div>
+                           <div className="col-6 p-2">
+                              <button className="btn col-12 text-bold btn-pr-outline">
+                                 {" "}
+                                 Copy Address
+                              </button>
+                           </div>
+                           <div className="col-6 p-2">
+                              <button
+                                 type="submit"
+                                 className="btn col-12 text-bold bg-pr"
+                              >
+                                 {" "}
+                                 I've sent
+                              </button>
+                           </div>
                         </div>
-                        <div className="col-6 p-2">
-                           <button className="btn col-12 text-bold bg-pr">
-                              {" "}
-                              I've sent
-                           </button>
-                        </div>
-                     </div>
+                     </form>
                   </div>
                </div>
             </div>

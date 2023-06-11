@@ -195,15 +195,27 @@ input[type="number"]::-webkit-outer-spin-button {
 .deposit option {
    width: 100%;
 }
-.deposit select:focus {
+.deposit input{
+   background: #23242b;
+   border: none;
+   color: #9a9a9a;
+}
+.deposit select:focus, .deposit input:focus {
    outline: none;
    border-radius: 5px;
+   background: #23242b;
+   color: #9a9a9a;
 }
+
 .deposit .n-wrap small {
    background: #23242b;
    padding: 10px;
    margin: 10px;
    margin-left: 0px;
+}
+.deposit .n-wrap small.active-address{
+   background: #ffb11a;
+   color: #000;
 }
 .deposit .d-address {
    background: #23242b;

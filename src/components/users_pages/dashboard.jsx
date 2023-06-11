@@ -25,10 +25,6 @@ export default function Dashboard() {
 
    const getCrypto = async () => {
       try {
-         //  const crypto_data = await axios.get(
-         //     "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,ripple&vs_currencies=usd&include_24hr_change=true"
-         //  );
-         //  setCrypto(crypto_data.data);
 
          const response = await axios.get(
             "https://api.coingecko.com/api/v3/coins/markets",
