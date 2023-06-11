@@ -53,7 +53,7 @@ export default function Signup() {
    const handleResponse = (response) => {
       if (response == "email exist") {
          setErr("Email already registered");
-         window.location.href = '/auth/login'
+         window.location.href = '/login'
       }
    };
    return (
