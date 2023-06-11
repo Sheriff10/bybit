@@ -20,6 +20,9 @@
     border: none;
     background: rgba(245 247 250);
 }
+.login .form-body input.input-err{
+    border: 1px solid red;
+}
 .login .form-body .d-flex{
     justify-content: end;
     padding: 15px 0px;

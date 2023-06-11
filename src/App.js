@@ -13,8 +13,10 @@ import Deposit from './components/users_pages/deposit';
 import Withdraw from './components/users_pages/withdraw';
 import Dashboard from './components/users_pages/dashboard';
 import Market from './components/users_pages/market';
+import Spot from './components/users_pages/spot';
 
 function App() {
+  window.api = "https://puzzled-tuna-panama-hat.cyclic.app"
   return (
     <div className="App">
       <Routes>
@@ -27,6 +29,7 @@ function App() {
         <Route path='/user/withdraw' element={<Withdraw />} />
         <Route path='/user/home' element={<Dashboard />} />
         <Route path='/user/market' element={<Market />} />
+        <Route path='/user/account/spot' element={<Spot />} />
       </Routes>
     </div>
   );

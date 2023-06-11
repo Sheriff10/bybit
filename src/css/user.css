@@ -23,7 +23,8 @@
 .asset .a-menu .row {
    padding: 20px 0px;
 }
-.asset .a-menu a {
+
+.asset .a-menu a{
    color: #fff;
 }
 .asset .a-menu .menu-icon {
@@ -45,7 +46,33 @@
    padding: 10px;
    border-radius: 10px;
 }
-
+.asset .coin-box{
+   background: #23242b;
+   padding: 10px;
+   border-radius: 10px;
+   margin-bottom: 20px;
+   text-transform: uppercase;
+}
+.asset .coin-box .row{
+   padding: 10px 0px;
+}
+.asset .coin-box img{
+   width: 20px;
+   margin: 10px;
+}
+.asset .coin-box span{
+   font-weight: bold;
+   text-transform: capitalize;
+}
+.asset .coin-box small{
+   color: #9a9a9a;
+   font-weight: bold;
+   font-size: 12px;
+   text-transform: lowercase;
+}
+.asset .coin-box .coin-img-con small{
+text-transform: uppercase;
+}
 /* User Menu */
 .u-header {
    background: #23242b;
@@ -112,6 +139,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 .convert .c-input-body .t-wrap {
    margin-left: 5px;
+   text-transform: uppercase;
 }
 .convert .c-input-body img {
    width: 30px;
@@ -129,7 +157,22 @@ input[type="number"]::-webkit-outer-spin-button {
    padding: 5px;
    border-radius: 5px;
 }
-
+.convert .asset{
+   min-height: 0px;
+}
+.convert .c-box{
+   position: relative;
+   overflow-x: hidden;
+}
+.convert .coin-list{
+   position: absolute;
+   width: 100%;
+   transform: translateX(-110%);
+   top: 0;
+}
+.convert .coin-list.list-active{
+   transform: translateX(0%);
+}
 /* Deposit */
 
 .deposit {

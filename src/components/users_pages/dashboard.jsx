@@ -12,13 +12,16 @@ import CryptoPrices from "./crypto-prices";
 import UserHeader from "./userHeader";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import authorizeUser from "../authentication/auth"
 
 export default function Dashboard() {
    const dumArr = [1, 2, 3];
    useEffect(() => {
+      authorizeUser()
       getCrypto();
    }, []);
    const [crypto, setCrypto] = useState([]);
+
 
    const getCrypto = async () => {
       try {
@@ -38,6 +41,7 @@ export default function Dashboard() {
             }
          );
          setCrypto(response.data);
+         console.log(response)
          console.log(response);
       } catch (error) {
          console.log(error);

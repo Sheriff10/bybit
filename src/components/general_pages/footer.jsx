@@ -12,7 +12,7 @@ export default function Footer() {
                 <div className="col-lg-8 col-12">
                     <div className="row">
                         {dum.map((i, index) => (
-                            <div className="col-6 col-lg-3">
+                            <div className="col-6 col-lg-3" key={index}>
                                 <div className="box">
                                     <div className="box-head text-pr text-bold">
                                         <span>About</span>

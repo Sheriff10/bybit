@@ -1,4 +1,5 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import {
    FaExchangeAlt,
    FaEye,
@@ -7,9 +8,36 @@ import {
    FaWallet,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import authorizeUser from "../authentication/auth";
 import UserHeader from "./userHeader";
 
 export default function Asset() {
+   useEffect(() => {
+      authorizeUser();
+      getBalance();
+   }, []);
+   const [balance, setBalance] = useState(0);
+   const [loading, setLoading] = useState(0);
+   const token = window.localStorage.getItem("token");
+
+   const getBalance = () => {
+      setLoading(1);
+      axios
+         .get(`${window.api}/user/asset`, {
+            headers: {
+               "x-auth-token": token,
+               "Content-Type": "application/json",
+            },
+         })
+         .then((res) => {
+            setLoading(0);
+            setBalance(res.data.toFixed(2));
+         })
+         .catch((err) => {
+            setLoading(0);
+            console.log(err);
+         });
+   };
    const mapMenu = (icon, title, link) => {
       return { icon, title, link };
    };
@@ -21,7 +49,7 @@ export default function Asset() {
    ];
    return (
       <div className="asset">
-         <div className="container">
+         <div className="container placeholder-glow">
             <div className="a-head">
                <span className="text-bold">My Assets</span>
             </div>
@@ -33,15 +61,20 @@ export default function Asset() {
                            Total Asset <FaEye />
                         </small>{" "}
                         <br />
-                        <span>
-                           10.34 <small>USD</small>
+                        <span
+                           className={`${loading == 1 ? "placeholder col-2" : null}`}
+                        >
+                           {balance} <small>USD</small>
                         </span>
                      </div>
                   </div>
                   <div className="a-menu">
                      <div className="row text-center">
                         {menuArr.map((i, index) => (
-                           <div className="col-3 d-flex justify-content-center" key={index}>
+                           <div
+                              className="col-3 d-flex justify-content-center"
+                              key={index}
+                           >
                               <Link to={i.link}>
                                  <div className="menu-icon">
                                     <i className="text-pr">{i.icon}</i> <br />{" "}
@@ -59,26 +92,34 @@ export default function Asset() {
                               <span>My Account</span>
                            </div>
                            <div className="menu">
-                              <small className="text-pr">Funding</small> <br />
-                              <span>
+                              <Link to={'/user/account/spot'}>
+                              <small className="text-pr">Spot Account</small>{" "}
+                              <br />
+                              <span className={`${loading == 1 ? "placeholder col-2 col-2" : null} text-light`}>
+                                 {balance} <small>USD</small>
+                              </span>
+                              </Link>
+                           </div>
+                           <div className="menu">
+                              <small className="text-pr">Margin Account</small>{" "}
+                              <br />
+                              <span className={`${loading == 1 ? "placeholder col-2" : null}`}>
                                  0.00 <small>USD</small>
                               </span>
                            </div>
                            <div className="menu">
-                              <small className="text-pr">Funding</small> <br />
-                              <span>
+                              <small className="text-pr">Futures Account</small>{" "}
+                              <br />
+                              <span className={`${loading == 1 ? "placeholder col-2" : null}`}>
                                  0.00 <small>USD</small>
                               </span>
                            </div>
                            <div className="menu">
-                              <small className="text-pr">Funding</small> <br />
-                              <span>
-                                 0.00 <small>USD</small>
-                              </span>
-                           </div>
-                           <div className="menu">
-                              <small className="text-pr">Funding</small> <br />
-                              <span>
+                              <small className="text-pr">
+                                 Lending & Borrowing Account
+                              </small>{" "}
+                              <br />
+                              <span className={`${loading == 1 ? "placeholder col-2" : null}`}>
                                  0.00 <small>USD</small>
                               </span>
                            </div>
