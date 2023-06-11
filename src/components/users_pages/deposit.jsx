@@ -18,7 +18,7 @@ export default function Deposit() {
    ];
 
    useEffect(() => {
-      authorizeUser()
+      authorizeUser();
       getTokenList();
    }, []);
    const handleAddressChange = (adrs, newActive) => {
@@ -44,15 +44,15 @@ export default function Deposit() {
             },
          })
          .then((res) => {
-            console.log(res)
+            console.log(res);
             setCoinList(res.data);
          })
          .catch((error) => {
             console.log(error);
          });
    };
-   const data = { amount, coin };
    const handleDeposit = (e) => {
+      const data = { amount, coin };
       e.preventDefault();
       axios
          .post(`${window.api}/user/deposit`, data, {
@@ -69,6 +69,18 @@ export default function Deposit() {
             console.log(error);
          });
    };
+
+   function copyToClipboard(text) {
+      navigator.clipboard
+         .writeText(text)
+         .then(() => {
+            alert("Address Copied");
+         })
+         .catch((error) => {
+            console.error("Error copying text to clipboard:", error);
+            alert("Error copying text to clipboard!");
+         });
+   }
    return (
       <div className="deposit">
          <div className="container">
@@ -127,7 +139,7 @@ export default function Deposit() {
                               <small>{address}</small>
                            </div>
                            <div className="col text-right">
-                              <span>
+                              <span onClick={() => copyToClipboard(address)}>
                                  <i>
                                     <FaRegCopy />
                                  </i>{" "}
@@ -172,7 +184,11 @@ export default function Deposit() {
                               />
                            </div>
                            <div className="col-6 p-2">
-                              <button className="btn col-12 text-bold btn-pr-outline">
+                              <button
+                                 type="button"
+                                 className="btn col-12 text-bold btn-pr-outline"
+                                 onClick={() => copyToClipboard(address)}
+                              >
                                  {" "}
                                  Copy Address
                               </button>
