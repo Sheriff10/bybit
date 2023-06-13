@@ -17,8 +17,8 @@ import Spot from './components/users_pages/spot';
 import DepositHistory from './components/users_pages/depositHistory';
 
 function App() {
-  window.api = "http://localhost:5000"
-  // window.api = "https://puzzled-tuna-panama-hat.cyclic.app"
+  // window.api = "http://localhost:5000"
+  window.api = "https://puzzled-tuna-panama-hat.cyclic.app"
   return (
     <div className="App">
       <Routes>
