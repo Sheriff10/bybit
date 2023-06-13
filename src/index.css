@@ -41,3 +41,9 @@ a:hover{
 .placeholder{
   border-radius: 5px;
 }
+.spacer{
+  position: relative;
+  width: 100%;
+  height: 160px;
+  background: transparent;
+}

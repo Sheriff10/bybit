@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { FaRegCopy } from "react-icons/fa";
+import { FaHistory, FaRegCopy } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import authorizeUser from "../authentication/auth";
 import UserHeader from "./userHeader";
 
@@ -9,6 +10,7 @@ export default function Deposit() {
    const [coinList, setCoinList] = useState([]);
    const [coin, setCoin] = useState("btc");
    const [amount, setAmount] = useState("");
+   // const [image, setImage] = useState('')
    const token = window.localStorage.getItem("token");
    const DumNetwork = [
       { network_name: "BTC", address: "BTCAddressHere" },
@@ -52,7 +54,9 @@ export default function Deposit() {
          });
    };
    const handleDeposit = (e) => {
-      const data = { amount, coin };
+      const image = handleImageUrl(coin)
+      const data = { amount, coin, image };
+      console.log(data)
       e.preventDefault();
       axios
          .post(`${window.api}/user/deposit`, data, {
@@ -69,6 +73,12 @@ export default function Deposit() {
             console.log(error);
          });
    };
+
+   const handleImageUrl = (symbol) => {
+      const coinData = coinList.filter(i => { return i.symbol === symbol})
+      const imageUrl = coinData[0].image
+      return imageUrl
+   }
 
    function copyToClipboard(text) {
       navigator.clipboard
@@ -88,6 +98,7 @@ export default function Deposit() {
                <div className="col-lg-6 col-12">
                   <div className="d-head">
                      <span className="text-bold">Deposit</span>
+                     <Link to={'/user/deposit/history'}> <i><FaHistory /></i></Link>
                   </div>
                   <div className="d-select-coin">
                      <select
@@ -95,8 +106,9 @@ export default function Deposit() {
                         id="coin"
                         onChange={(e) => setCoin(e.target.value)}
                      >
+                           <option value="btc" selected>BTC</option>
                         {coinList.map((i, index) => (
-                           <option value={i.symbol} key={index}>
+                           <option value={i.symbol} key={index} onSelect={() => console.log("first")}>
                               {" "}
                               {i.symbol}
                            </option>

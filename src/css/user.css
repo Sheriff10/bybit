@@ -183,6 +183,12 @@ input[type="number"]::-webkit-outer-spin-button {
 .deposit .d-head {
    padding: 20px 0px;
    font-size: 22px;
+   display: flex;
+   justify-content: space-between;
+}
+.deposit .d-head i{
+   color: #bbbbbb;
+   font-size: 16px;
 }
 .deposit select {
    background: #23242b;
@@ -191,6 +197,7 @@ input[type="number"]::-webkit-outer-spin-button {
    padding: 10px 5px;
    width: 100%;
    margin-bottom: 15px;
+   text-transform: uppercase;
 }
 .deposit option {
    width: 100%;
@@ -376,4 +383,43 @@ input[type="number"]::-webkit-outer-spin-button {
 /* Market */
 .market {
     background: #121214;
+}
+
+/* Deposit History */
+
+.d-history{
+   background: #121214;
+   min-height: 100vh;
+   color: #fff;
+}
+.d-history .dp-head {
+   padding: 20px;
+   text-align: center;
+   font-weight: bold;
+}
+.d-history table {
+   width: 100%;
+}
+.d-history table img{
+   width: 20px;
+}
+.d-history .w-t{
+   margin-left: 8px;
+   text-transform: uppercase;
+}
+.d-history small, .d-history th{
+   font-size: 14px;
+   color: #9a9a9a;
+   font-weight: 100;
+}
+.d-history h3{
+   color: #bbbbbb;
+   padding: 20px;
+}
+.d-history .no-history{
+   background: #ffb31a7b;
+   border-radius: 10px;
+}
+.d-history td{
+   padding: 10px;
 }

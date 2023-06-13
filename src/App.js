@@ -14,9 +14,11 @@ import Withdraw from './components/users_pages/withdraw';
 import Dashboard from './components/users_pages/dashboard';
 import Market from './components/users_pages/market';
 import Spot from './components/users_pages/spot';
+import DepositHistory from './components/users_pages/depositHistory';
 
 function App() {
-  window.api = "https://puzzled-tuna-panama-hat.cyclic.app"
+  window.api = "http://localhost:5000"
+  // window.api = "https://puzzled-tuna-panama-hat.cyclic.app"
   return (
     <div className="App">
       <Routes>
@@ -26,6 +28,7 @@ function App() {
         <Route path='/user/asset' element={<Asset />} />
         <Route path='/user/convert' element={<Convert />} />
         <Route path='/user/deposit' element={<Deposit />} />
+        <Route path='/user/deposit/history' element={<DepositHistory />} />
         <Route path='/user/withdraw' element={<Withdraw />} />
         <Route path='/user/home' element={<Dashboard />} />
         <Route path='/user/market' element={<Market />} />

@@ -229,9 +229,9 @@ export default function Convert() {
                                     <div className="col-4 d-flex align-items-center ">
                                        <div className="coin-text-con col-12 text-right">
                                           <small> Balance</small> <br />
-                                          <balance className="text-bold">
+                                          <span className="text-bold">
                                              {i.balance}
-                                          </balance>
+                                          </span>
                                        </div>
                                     </div>
                                  </div>
@@ -281,6 +281,7 @@ export default function Convert() {
                </div>
             </div>
          </div>
+         <div className="spacer"></div>
          <UserHeader active={"trade"} />
       </div>
    );
