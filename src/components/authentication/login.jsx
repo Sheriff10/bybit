@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { FaEnvelope } from "react-icons/fa";
 import Footer from "../general_pages/footer";
 import Header from "../general_pages/header";
 
@@ -9,6 +10,7 @@ export default function Login() {
    const [password, setPassword] = useState("");
    const [err, setErr] = useState("");
    const [loading, setLoading] = useState(0);
+   const [verifyEmail, setVerifyEmail] = useState(0);
    const api = window.api;
 
    const spinner = (
@@ -31,6 +33,9 @@ export default function Login() {
                window.localStorage.setItem("token", token);
                window.location.href = "/user/home";
             }
+            if (res.data == "verify email") {
+               setVerifyEmail(1);
+            }
             console.log(res.data);
          })
          .catch((error) => {
@@ -39,6 +44,46 @@ export default function Login() {
             console.log(error);
          });
    };
+   const handleEmailVerification = (sendAgain) => {
+      axios
+         .post(`${api}/auth/signup/send_email_token`, { email })
+         .then((res) => {
+            console.log(res);
+            window.alert("Email Verification Sent.")
+         })
+         .catch((err) => {
+            console.log(err);
+         });
+   };
+   const verifyEmailTemplate = (
+      <div className="verify-email text-center">
+         <div className="row ">
+            <div className="col-12">
+               <i>
+                  <FaEnvelope />
+               </i>
+               <div className="v-head">
+                  <h1>Email Verification</h1>
+               </div>
+               <div className="v-body">
+                  <span>
+                     Your email isn't verified, Please verify email to proceed{" "}
+                     <br /> if mesage isn't found, kindly check junk / spam folder in
+                     your email.
+                  </span>
+
+                  <div className="btn-con">
+                     <button
+                        type="button"
+                        className="btn col-12 bg-pr text-bold"
+                        onClick={() => handleEmailVerification(1)}
+                     > Verify Email</button>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   );
 
    return (
       <>
@@ -49,6 +94,7 @@ export default function Login() {
                   <div className="col-lg-6 col-12">
                      <div className="login-form">
                         <form action="" onSubmit={handleSubmit}>
+                           {verifyEmail === 1 ? verifyEmailTemplate : null}
                            <div className="form-head text-bold">
                               <span className="h4">Welcome to Bybit</span>
                            </div>

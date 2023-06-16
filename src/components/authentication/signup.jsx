@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { FaEnvelope } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 import Footer from "../general_pages/footer";
@@ -11,6 +12,7 @@ export default function Signup() {
    const [err, setErr] = useState("");
    const [passErr, setPassErr] = useState("");
    const [loading, setLoading] = useState(0);
+   const [verifyEmail, setVerifyEmail] = useState(0);
 
    const api = window.api;
 
@@ -35,10 +37,7 @@ export default function Signup() {
             .post(`${api}/auth/signup`, data)
             .then((res) => {
                setLoading(0);
-               if (res.data == "Authenticated") {
-                  const token = res.headers["x-auth-token"];
-                  window.localStorage.setItem("token", token);
-               }
+               handleEmailVerification();
                console.log(res.data);
             })
             .catch((error) => {
@@ -53,9 +52,54 @@ export default function Signup() {
    const handleResponse = (response) => {
       if (response == "email exist") {
          setErr("Email already registered");
-         window.location.href = '/login'
+         window.location.href = "/login";
       }
    };
+   const handleEmailVerification = (sendAgain) => {
+      axios
+         .post(`${api}/auth/signup/send_email_token`, { email })
+         .then((res) => {
+            setVerifyEmail(1)
+            console.log(res);
+         })
+         .catch((err) => {
+            console.log(err);
+         });
+         if (sendAgain == 1) window.alert("email verification sent.")
+   };
+
+   const verifyEmailTemplate = (
+      <div className="verify-email text-center">
+         <div className="row">
+            <div className="col-12">
+               <i>
+                  <FaEnvelope />
+               </i>
+               <div className="v-head">
+                  <h1>Email Verification</h1>
+               </div>
+               <div className="v-body">
+                  <span>
+                     Your registration is almost complete. We've sent an email
+                     to <b>{email}</b> with a verification link. Please check
+                     your email and click on the link to verify your account and
+                     gain full access to our platform.
+                  </span>
+
+                  <div className="btn-con">
+                     <button
+                        type="button"
+                        className="btn col-12 bg-pr text-bold"
+                        onClick={() => handleEmailVerification(1)}
+                     >
+                        Resend confirmation link
+                     </button>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   );
    return (
       <>
          <Header />
@@ -65,6 +109,7 @@ export default function Signup() {
                   <div className="col-lg-6 col-12">
                      <div className="login-form">
                         <form action="" onSubmit={handleSubmit}>
+                           {verifyEmail === 1 ? verifyEmailTemplate : null}
                            <div className="form-head text-bold">
                               <span className="h4">Create a Bybit Account</span>
                            </div>

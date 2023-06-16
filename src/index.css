@@ -28,6 +28,9 @@ a:hover{
 .bg-pr{
   background: #ffb11a;
 }
+.bg-pr:hover{
+  background: #c7880b;
+}
 .trans{
   transition: all .3s ease;
 }

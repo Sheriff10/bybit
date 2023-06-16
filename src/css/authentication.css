@@ -7,6 +7,9 @@
     background: #fff;
     padding: 20px;
     border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+
 }
 .login .form-head{
     padding: 20px 0px;
@@ -30,4 +33,53 @@
 .login button:hover {
     background: #121214;
     color: #ffb11a;
+}
+
+.verify-email{
+    background: #fff;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+.verify-email .row{
+    padding: 10px;
+    height: 100%;
+    align-items: center;
+}
+.verify-email i {
+    font-size: 30px;
+    background: #121214;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+.verify-email .v-head{
+    padding-top: 10px;
+}
+.verify-email .btn-con{
+    padding: 20px 0px;
+}
+.confirm-email{
+    background: #f0f1f3;
+    text-align: center;
+
+}
+.confirm-email .hh{
+    min-height: 80vh;
+    align-items: center;
+}
+.confirm-email .c-card{
+    background: #fff;
+    padding: 15px;
+    border-radius: 10px;
+}
+.confirm-email .icon-con{
+    padding: 10px 0px;
+}
+.confirm-email small {
+    padding: 10px 13px;
+    border-radius: 50%;
+    font-size: 30px;
 }

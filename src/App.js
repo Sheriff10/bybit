@@ -15,16 +15,18 @@ import Dashboard from './components/users_pages/dashboard';
 import Market from './components/users_pages/market';
 import Spot from './components/users_pages/spot';
 import DepositHistory from './components/users_pages/depositHistory';
+import ConfirmEmail from './components/users_pages/confirmEmail';
 
 function App() {
-  // window.api = "http://localhost:5000"
-  window.api = "https://puzzled-tuna-panama-hat.cyclic.app"
+  window.api = "http://localhost:5000"
+  // window.api = "https://puzzled-tuna-panama-hat.cyclic.app"
   return (
     <div className="App">
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Signup />} />
+        <Route path='/signup/verify_email' element={<ConfirmEmail />} />
         <Route path='/user/asset' element={<Asset />} />
         <Route path='/user/convert' element={<Convert />} />
         <Route path='/user/deposit' element={<Deposit />} />
