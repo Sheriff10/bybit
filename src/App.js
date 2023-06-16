@@ -18,8 +18,8 @@ import DepositHistory from './components/users_pages/depositHistory';
 import ConfirmEmail from './components/users_pages/confirmEmail';
 
 function App() {
-  window.api = "http://localhost:5000"
-  // window.api = "https://puzzled-tuna-panama-hat.cyclic.app"
+  // window.api = "http://localhost:5000"
+  window.api = "https://puzzled-tuna-panama-hat.cyclic.app"
   return (
     <div className="App">
       <Routes>
