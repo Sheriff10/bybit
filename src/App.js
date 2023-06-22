@@ -20,8 +20,8 @@ import ConfirmEmail from './components/users_pages/confirmEmail';
 import AdminHome from './components/admin/adminHome';
 
 function App() {
-  window.api = "http://localhost:5000"
-  // window.api = "https://puzzled-tuna-panama-hat.cyclic.app"
+  // window.api = "http://localhost:5000"
+  window.api = "https://puzzled-tuna-panama-hat.cyclic.app"
   return (
     <div className="App">
       <Routes>
