@@ -1,0 +1,63 @@
+.admin .a-banner {
+    background: #ffb11a;
+    padding: 40px 0px;
+}
+.admin .a-banner-head{
+    padding: 10px 5px;
+}
+
+.admin .a-card{
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    background: #23242b;
+    margin-bottom: 10px;
+}
+.admin .a-card .a-card-head{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.admin .a-card .a-card-head i{
+    padding: 3px 10px;
+    background: #ffb31a4a;
+    font-size: 18px;
+    border-radius: 5px;
+    color: #ffb11a;
+}
+.admin .a-card .a-card-body{
+    padding: 20px 0px;
+}
+.admin .a-menu{
+    padding: 10px 0px;
+    background: #fff;
+    margin-top: 10px;
+    border-radius: 5px;
+    padding: 10px 0px;
+}
+.admin .a-menu a{
+    padding: 5px 0px;
+    margin-right: 30px;
+    font-weight: bold;
+    color: #000;
+}
+.admin .a-menu a.a-tab{
+    border-bottom: 3px solid #ffb11a;
+}
+.admin .w-con {
+    overflow-x: scroll;
+}
+.admin .w-con table {
+    width: 100%;
+    /* background: #000; */
+}
+.admin table thead{
+    text-transform: capitalize;
+    background: #bababa;
+}
+.admin table th{
+    padding: 10px;
+}
+.admin .wrap{
+    min-height: 80vh;
+}

@@ -31,8 +31,10 @@ export default function Convert() {
       getCoinBalance();
    }, []);
    useEffect(() => {
-      if (cryptoPrices.length !== 0) {
+      if (cryptoPrices.length > 1 ) {
          conversionCalc(cryptoPrices);
+      }else{
+         getCrypto();
       }
    }, [fromInput]);
    useEffect(() => {

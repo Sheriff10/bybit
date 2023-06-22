@@ -39,6 +39,8 @@ export default function Signup() {
                setLoading(0);
                handleEmailVerification();
                console.log(res.data);
+               window.alert("Acccount created successfully, Please login")
+               window.location.href = "/login"
             })
             .catch((error) => {
                setErr("Invalid login credentials");
@@ -109,7 +111,7 @@ export default function Signup() {
                   <div className="col-lg-6 col-12">
                      <div className="login-form">
                         <form action="" onSubmit={handleSubmit}>
-                           {verifyEmail === 1 ? verifyEmailTemplate : null}
+                           {/* {verifyEmail === 1 ? verifyEmailTemplate : null} */}
                            <div className="form-head text-bold">
                               <span className="h4">Create a Bybit Account</span>
                            </div>

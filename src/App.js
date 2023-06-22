@@ -3,6 +3,7 @@ import './App.css';
 import "./css/general_pages.css"
 import "./css/authentication.css"
 import "./css/user.css"
+import "./css/admin.css"
 import { Route, Routes } from 'react-router-dom';
 import Home from './components/general_pages/home';
 import Login from './components/authentication/login';
@@ -16,10 +17,11 @@ import Market from './components/users_pages/market';
 import Spot from './components/users_pages/spot';
 import DepositHistory from './components/users_pages/depositHistory';
 import ConfirmEmail from './components/users_pages/confirmEmail';
+import AdminHome from './components/admin/adminHome';
 
 function App() {
-  // window.api = "http://localhost:5000"
-  window.api = "https://puzzled-tuna-panama-hat.cyclic.app"
+  window.api = "http://localhost:5000"
+  // window.api = "https://puzzled-tuna-panama-hat.cyclic.app"
   return (
     <div className="App">
       <Routes>
@@ -35,6 +37,7 @@ function App() {
         <Route path='/user/home' element={<Dashboard />} />
         <Route path='/user/market' element={<Market />} />
         <Route path='/user/account/spot' element={<Spot />} />
+        <Route path='/admin/dashboard' element={<AdminHome />} />
       </Routes>
     </div>
   );
