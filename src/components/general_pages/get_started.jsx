@@ -4,7 +4,6 @@ import { FaDiceOne, FaDiceThree, FaDiceTwo } from "react-icons/fa";
 export default function Get_started() {
    const handleImgIndexAdd = (target) => {
       const get_target = document.querySelector(target);
-      console.log(get_target);
       get_target.classList.add("img-top");
    };
    const handleImgIndexRemove = (target) => {

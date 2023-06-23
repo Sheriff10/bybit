@@ -42,8 +42,8 @@ export default function Header() {
                            <input
                               type="text"
                               className="form-control"
-                              placeholder="Serach coin"
-                              aria-label="Serach coin"
+                              placeholder="Search coin"
+                              aria-label="Search coin"
                               aria-describedby="basic-addon1"
                            />
                         </div>

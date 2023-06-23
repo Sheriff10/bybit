@@ -32,7 +32,6 @@ export default function DepositHistory() {
          })
          .then((res) => {
             setDepositHistory(res.data);
-            console.log(res.data);
          })
          .catch((err) => console.log(err));
    };

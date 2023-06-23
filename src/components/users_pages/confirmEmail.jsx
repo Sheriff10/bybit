@@ -22,7 +22,6 @@ export default function ConfirmEmail() {
    const confirmEmail = () => {
       if (!token) window.location.href = "/login";
       else {
-        console.log("Here Hodll")
          axios
             .get(`${api}/auth/signup/verify_email`, {
                headers: {
@@ -32,7 +31,6 @@ export default function ConfirmEmail() {
             })
             .then((res) => {
                 handleResponse(res.data)
-               console.log(res);
             })
             .catch((error) => console.log(error));
       }

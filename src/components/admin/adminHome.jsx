@@ -25,9 +25,7 @@ export default function AdminHome() {
       getOverviewData();
    }, []);
    useState(() => {
-      console.log(users);
       if (users.length !== 0) {
-         console.log("first");
          toggleActiveTab(".a1");
       }
    }, [users]);

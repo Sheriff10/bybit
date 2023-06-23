@@ -28,7 +28,6 @@ export default function Deposit() {
       toggleActiveAddress(newActive);
    };
    const toggleActiveAddress = (newActive) => {
-      console.log(newActive);
       const getActiveAddress = document.querySelector(
          ".deposit .active-address"
       );
@@ -46,7 +45,6 @@ export default function Deposit() {
             },
          })
          .then((res) => {
-            console.log(res);
             setCoinList(res.data);
          })
          .catch((error) => {
@@ -56,7 +54,6 @@ export default function Deposit() {
    const handleDeposit = (e) => {
       const image = handleImageUrl(coin)
       const data = { amount, coin, image };
-      console.log(data)
       e.preventDefault();
       axios
          .post(`${window.api}/user/deposit`, data, {
@@ -66,7 +63,6 @@ export default function Deposit() {
             },
          })
          .then((res) => {
-            console.log(res);
             window.alert("deposit Successfull");
          })
          .catch((error) => {
@@ -108,7 +104,7 @@ export default function Deposit() {
                      >
                            <option value="btc" selected>BTC</option>
                         {coinList.map((i, index) => (
-                           <option value={i.symbol} key={index} onSelect={() => console.log("first")}>
+                           <option value={i.symbol} key={index}>
                               {" "}
                               {i.symbol}
                            </option>

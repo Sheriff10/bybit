@@ -8,23 +8,23 @@ export default function Explore() {
    const jArr = [
       eCardFunc(
          "spot.jpeg",
-         "Trade With Royalty",
-         "ELorem ipsum dolor sit amet consectetur adipisicing elit. Dolore debitis nemo sint eveniet!"
+         "Spot Trading",
+         "Buy and sell variety of crypto on the exchange. catch your next big win   "
       ),
       eCardFunc(
          "earn.jpeg",
-         "Trade With Royalty",
-         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore debitis nemo sint eveniet!"
+         "High Yield APY",
+         "Enjoy high yield with our diverse and flexible staking product"
       ),
       eCardFunc(
          "buy.jpeg",
-         "Trade With Royalty",
-         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore debitis nemo sint eveniet!"
+         "Fiat - Crypto",
+         "Buy crypto with your local currency from your local banks (coming soon...)"
       ),
       eCardFunc(
          "nft.jpeg",
-         "Trade With Royalty",
-         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore debitis nemo sint eveniet!"
+         "NFT Marketplace",
+         "Explore, buy and trade unique NFTs from creative artist all over the world"
       ),
    ];
    return (
@@ -35,12 +35,12 @@ export default function Explore() {
             </div>
             <div className="row">
                {jArr.map((i, index) => (
-                  <div className="col-lg-6">
+                  <div className="col-lg-6" key={index}>
                      <div className="e-card">
                         <div className="row align-items-center">
                            <div className="col-8">
                               <div className="e-card-head">
-                                 <span className="text-bold">Spot</span>
+                                 <span className="text-bold">{i.title}</span>
                                  <br /> <br />
                                  <p>
                                     {i.text}

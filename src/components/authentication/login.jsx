@@ -36,7 +36,6 @@ export default function Login() {
             if (res.data == "verify email") {
                setVerifyEmail(1);
             }
-            console.log(res.data);
          })
          .catch((error) => {
             setErr("Invalid login credentials");
@@ -48,7 +47,6 @@ export default function Login() {
       axios
          .post(`${api}/auth/signup/send_email_token`, { email })
          .then((res) => {
-            console.log(res);
             window.alert("Email Verification Sent.")
          })
          .catch((err) => {

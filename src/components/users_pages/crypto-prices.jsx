@@ -14,34 +14,10 @@ export default function CryptoPrices() {
             "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=20&page=1&sparkline=false"
          );
          setCrypto(crypto_data.data);
-         console.log(crypto_data);
       } catch (error) {
          console.log(error);
       }
    };
-   const topGainer = async () => {
-      try {
-         const crypto_data = await axios.get(
-            "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=price_change_percentage_24h&per_page=10&page=1&sparkline=false"
-         );
-         setCrypto(crypto_data.data);
-         console.log(crypto_data);
-      } catch (error) {
-         console.log(error);
-      }
-   };
-   const topLoser = async () => {
-    try {
-       const crypto_data = await axios.get(
-          "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=price_change_percentage_24h&per_page=10&page=1&sparkline=false&order=desc"
-       );
-       setCrypto(crypto_data.data);
-       console.log(crypto_data);
-       console.log("juhjnnjnj")
-    } catch (error) {
-       console.log(error);
-    }
- };
    const handleColor = (data) => {
       const price_change = parseFloat(data);
 

@@ -38,7 +38,6 @@ export default function Signup() {
             .then((res) => {
                setLoading(0);
                handleEmailVerification();
-               console.log(res.data);
                window.alert("Acccount created successfully, Please login")
                window.location.href = "/login"
             })
@@ -62,7 +61,6 @@ export default function Signup() {
          .post(`${api}/auth/signup/send_email_token`, { email })
          .then((res) => {
             setVerifyEmail(1)
-            console.log(res);
          })
          .catch((err) => {
             console.log(err);

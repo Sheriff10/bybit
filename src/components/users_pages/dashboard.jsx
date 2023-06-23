@@ -37,8 +37,6 @@ export default function Dashboard() {
             }
          );
          setCrypto(response.data);
-         console.log(response)
-         console.log(response);
       } catch (error) {
          console.log(error);
       }

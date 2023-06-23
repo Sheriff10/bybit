@@ -18,8 +18,8 @@ export default function Convert() {
       symbol: "usdt",
       image: "https://assets.coingecko.com/coins/images/325/large/Tether.png?1668148663",
    });
-   const [fromInput, setFromInput] = useState(null);
-   const [toInput, settoInput] = useState(null);
+   const [fromInput, setFromInput] = useState(" ");
+   const [toInput, settoInput] = useState(" ");
    const [cryptoPrices, setCryptoPrices] = useState([]);
    const [loading, setLoading] = useState(0);
    const [errorLog, setErrorLog] = useState({
@@ -31,9 +31,9 @@ export default function Convert() {
       getCoinBalance();
    }, []);
    useEffect(() => {
-      if (cryptoPrices.length > 1 ) {
+      if (cryptoPrices.length > 1) {
          conversionCalc(cryptoPrices);
-      }else{
+      } else {
          getCrypto();
       }
    }, [fromInput]);
@@ -59,7 +59,6 @@ export default function Convert() {
             });
             const getSymbolBalance = balances[0].balance;
             setBalance(getSymbolBalance);
-            console.log(res.data);
          })
          .catch((err) => {
             console.log(err);
@@ -104,16 +103,13 @@ export default function Convert() {
                sparkline: false,
             }
          );
-         console.log(response.data);
+
          setCryptoPrices(response.data);
-         console.log(response);
       } catch (error) {
          console.log(error);
       }
    };
    const conversionCalc = (data) => {
-      console.log(data)
-
       const fromCoinPrice = data.filter((i) => {
          return i.symbol === from.symbol;
       })[0].current_price;
@@ -123,21 +119,18 @@ export default function Convert() {
 
       const fromRateUsd = fromCoinPrice * fromInput;
       const toValue = fromRateUsd / toCoin;
-
-      console.log(toInput);
       settoInput(toValue);
    };
 
    const handleConvert = (e) => {
       e.preventDefault();
-      setLoading(1)
+      setLoading(1);
       const data = {
          fromSymbol: from.symbol,
          toSymbol: to.symbol,
          fromAmount: fromInput,
          toAmount: toInput,
       };
-      console.log(data);
       axios
          .post(`${window.api}/user/convert`, data, {
             headers: {
@@ -146,8 +139,7 @@ export default function Convert() {
             },
          })
          .then((response) => {
-            console.log(response);
-            setLoading(0)
+            setLoading(0);
             getCoinBalance();
             settoInput(0);
             setFromInput(0);
@@ -156,9 +148,8 @@ export default function Convert() {
             }
          })
          .catch((error) => {
-            setLoading(0)
+            setLoading(0);
             handleResponse(error.response.data);
-            console.log(error.response.data);
          });
    };
    const toggleErr = () => {
@@ -238,7 +229,11 @@ export default function Convert() {
                                        type="number"
                                        placeholder="0.00"
                                        step={0.00002}
-                                       value={fromInput == 0 ? setFromInput(null) : fromInput}
+                                       value={
+                                          fromInput == 0
+                                             ? setFromInput(null)
+                                             : fromInput
+                                       }
                                        onChange={(e) =>
                                           setFromInput(
                                              parseFloat(e.target.value)
@@ -365,9 +360,9 @@ export default function Convert() {
                                        <div className="col-4 d-flex align-items-center ">
                                           <div className="coin-text-con col-12 text-right">
                                              <small> Balance</small> <br />
-                                             <balance className="text-bold">
+                                             <span className="text-bold">
                                                 {i.balance.toFixed(4)}
-                                             </balance>
+                                             </span>
                                           </div>
                                        </div>
                                     </div>

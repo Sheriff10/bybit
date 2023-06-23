@@ -53,7 +53,6 @@ export default function Spot() {
          .then((res) => {
             setLoading(0);
             setCoinBalance(res.data);
-            console.log(res.data);
          })
          .catch((err) => {
             setLoading(0);

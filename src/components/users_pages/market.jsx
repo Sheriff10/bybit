@@ -1,14 +1,14 @@
 import React from "react";
 import CryptoPrices from "./crypto-prices";
 import {
-    FaAngleRight,
-    FaExchangeAlt,
-    FaHeadset,
-    FaRegBell,
-    FaSearch,
-    FaUser,
-    FaWallet,
- } from "react-icons/fa";
+   FaAngleRight,
+   FaExchangeAlt,
+   FaHeadset,
+   FaRegBell,
+   FaSearch,
+   FaUser,
+   FaWallet,
+} from "react-icons/fa";
 import UserHeader from "./userHeader";
 
 export default function Market() {
@@ -58,7 +58,9 @@ export default function Market() {
                </div>
             </div>
          </div>
-         <CryptoPrices />
+         <div className="container">
+            <CryptoPrices />
+         </div>
          <UserHeader active={"market"} />
       </div>
    );
