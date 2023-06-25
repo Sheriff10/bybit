@@ -16,10 +16,18 @@ export default function DepositHistory() {
    }, []);
    const token = window.localStorage.getItem("token");
    const handleColor = (text) => {
-      if (text === "true") {
-         return <small className="text-danger text-bold"><b>Pending</b></small>;
+      if (text !== "confirmed") {
+         return (
+            <small className="text-danger text-bold">
+               <b>{text === "true" ? "pending" : text}</b>
+            </small>
+         );
       } else {
-         return <small className="text-success text-bold">{text}</small>;
+         return (
+            <small className="text-success text-bold">
+               <b>{text}</b>
+            </small>
+         );
       }
    };
    const getHistory = () => {

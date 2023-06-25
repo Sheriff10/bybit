@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Intro() {
    return (
@@ -10,28 +11,31 @@ export default function Intro() {
                      <h1>Bitcoin Rush</h1>
                      <h3 className="text-bold text-pr">
                         1,000,000 USDT Prize Pool Up for Grabs!
-                     </h3><br />
+                     </h3>
+                     <br />
                      <a href="#" className="btn bg-pr btn-lg">
                         REGISTER NOW!
                      </a>
-                  </div>  
+                  </div>
                   <div className="intro-form ">
                      <div className="row align-items-center">
                         <div className="col-lg-10">
                            <div className="input-group pt-3 mb-3">
                               <input
                                  type="text"
-                                 className="form-control bg-dark"
+                                 className="form-control bg-dark text-light"
                                  placeholder="Enter Email to Register"
                                  aria-label="Email"
                                  aria-describedby="basic-addon1"
                               />
-                              <span
-                                 className="input-group-text bg-pr"
-                                 id="basic-addon1"
-                              >
-                                 REGISTER
-                              </span>
+                              <Link to={"/signup"}>
+                                 <span
+                                    className="input-group-text bg-pr"
+                                    id="basic-addon1"
+                                 >
+                                    REGISTER
+                                 </span>
+                              </Link>
                            </div>
                         </div>
                         <div className="col-lg-2">

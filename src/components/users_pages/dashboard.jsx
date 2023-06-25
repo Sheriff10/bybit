@@ -5,6 +5,7 @@ import {
    FaHeadset,
    FaRegBell,
    FaSearch,
+   FaSignOutAlt,
    FaUser,
    FaWallet,
 } from "react-icons/fa";
@@ -60,6 +61,10 @@ export default function Dashboard() {
       }
    };
 
+   const LogOut = () => {
+      window.localStorage.clear("token")
+   }
+
    return (
       <div className="dashboard">
          <div className="header">
@@ -85,8 +90,8 @@ export default function Dashboard() {
                               <input
                                  type="text"
                                  className="form-control"
-                                 placeholder="Serach coin"
-                                 aria-label="Serach coin"
+                                 placeholder="Search coin"
+                                 aria-label="Search coin"
                                  aria-describedby="basic-addon1"
                               />
                            </div>
@@ -99,7 +104,7 @@ export default function Dashboard() {
                            <FaHeadset />
                         </i>
                         <i>
-                           <FaRegBell />
+                           <Link to={'/login'} onClick={LogOut}><FaSignOutAlt /></Link>
                         </i>
                      </div>
                   </div>
@@ -108,7 +113,7 @@ export default function Dashboard() {
          </div>
          <div className="container">
             <div className="row justify-content-center">
-               <div className="col-lg-6 col-12">
+               <div className="col-lg-12 col-12">
                   <div className="d-intro">
                      <img
                         src="/introbg.png"

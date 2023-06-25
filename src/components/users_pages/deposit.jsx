@@ -102,7 +102,7 @@ export default function Deposit() {
                         id="coin"
                         onChange={(e) => setCoin(e.target.value)}
                      >
-                           <option value="btc" selected>BTC</option>
+                           <option value="btc" selected>Select Coin</option>
                         {coinList.map((i, index) => (
                            <option value={i.symbol} key={index}>
                               {" "}

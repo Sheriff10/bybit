@@ -45,7 +45,7 @@ export default function Asset() {
       mapMenu(<FaWallet />, "Deposit", "/user/deposit"),
       mapMenu(<FaPaperPlane />, "Withdraw", "/user/withdraw"),
       mapMenu(<FaExchangeAlt />, "Convert", "/user/convert"),
-      mapMenu(<FaRetweet />, "Transfer", "/user/asset"),
+      mapMenu(<FaRetweet />, "Transfer", "/user/transfer"),
    ];
    return (
       <div className="asset">
