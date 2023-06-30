@@ -21,6 +21,7 @@ export default function Convert() {
    const [fromInput, setFromInput] = useState(" ");
    const [toInput, settoInput] = useState(" ");
    const [cryptoPrices, setCryptoPrices] = useState([]);
+   const [BtcPrice, setBtcPrice] = useState(0);
    const [loading, setLoading] = useState(0);
    const [errorLog, setErrorLog] = useState({
       message: "",
@@ -29,8 +30,10 @@ export default function Convert() {
    useEffect(() => {
       authorizeUser();
       getCoinBalance();
+      getBTCPrice();
    }, []);
    useEffect(() => {
+      console.log(cryptoPrices)
       if (cryptoPrices.length > 1) {
          conversionCalc(cryptoPrices);
       } else {
@@ -59,6 +62,23 @@ export default function Convert() {
             });
             const getSymbolBalance = balances[0].balance;
             setBalance(getSymbolBalance);
+         })
+         .catch((err) => {
+            console.log(err);
+         });
+   };
+
+   const getBTCPrice = () => {
+      axios
+         .get(`${window.api}/user/get_btc_price`, {
+            headers: {
+               "x-auth-token": token,
+               "Content-Type": "application/json",
+            },
+         })
+         .then((res) => {
+            console.log(res);
+            setBtcPrice(parseInt(res.data));
          })
          .catch((err) => {
             console.log(err);
@@ -103,23 +123,38 @@ export default function Convert() {
                sparkline: false,
             }
          );
-
          setCryptoPrices(response.data);
+         // console.log(response);
       } catch (error) {
          console.log(error);
       }
    };
    const conversionCalc = (data) => {
-      const fromCoinPrice = data.filter((i) => {
-         return i.symbol === from.symbol;
-      })[0].current_price;
-      const toCoin = data.filter((i) => {
-         return i.symbol === to.symbol;
-      })[0].current_price;
+      console.log(data);
 
-      const fromRateUsd = fromCoinPrice * fromInput;
-      const toValue = fromRateUsd / toCoin;
-      settoInput(toValue);
+      try {
+         const fromCoinPrice = data.filter((i) => {
+            return i.symbol === from.symbol;
+         })[0].current_price;
+         const toCoin = data.filter((i) => {
+            return i.symbol === to.symbol;
+         })[0].current_price;
+   
+         if (data[0].symbol === "btc" || data[1].symbol == "btc") {
+            const fromRateUsd = BtcPrice * fromInput;
+            const toValue = fromRateUsd / toCoin;
+            settoInput(toValue);
+         } else {
+            const fromRateUsd = fromCoinPrice * fromInput;
+            const toValue = fromRateUsd / toCoin;
+            settoInput(toValue);
+         }
+         // const fromRateUsd = fromCoinPrice * fromInput;
+         //    const toValue = fromRateUsd / toCoin;
+         //    settoInput(toValue);
+      } catch (error) {
+         console.log(error)
+      }
    };
 
    const handleConvert = (e) => {

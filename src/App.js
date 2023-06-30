@@ -21,7 +21,7 @@ import AdminHome from "./components/admin/adminHome";
 import Transfer from "./components/users_pages/transfer";
 
 function App() {
-  //  window.api = "http://localhost:5000"
+   // window.api = "http://localhost:5000"   
    window.api = "https://puzzled-tuna-panama-hat.cyclic.app";
    return (
       <div className="App">

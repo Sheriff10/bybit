@@ -5,6 +5,7 @@ import authorizeUser from "../authentication/auth";
 import AllUsers from "./allUsers";
 import Deposits from "./deposits";
 import PendingDeposit from "./pendingWithdrawals";
+import UpdateBTC from "./updateBTC";
 const token = window.localStorage.getItem("token");
 
 export default function AdminHome() {
@@ -117,6 +118,7 @@ export default function AdminHome() {
          );
       if (className === ".a2") setComponent(<Deposits deposits={deposit} />);
       if (className === ".a3") setComponent(<AllUsers users={users} />);
+      if (className === ".a4") setComponent(<UpdateBTC/>);
    };
 
    return (
@@ -156,6 +158,9 @@ export default function AdminHome() {
                </a>
                <a className="a3" onClick={() => toggleActiveTab(".a3")}>
                   Users
+               </a>
+               <a className="a4" onClick={() => toggleActiveTab(".a4")}>
+                  Update BTC price
                </a>
                <small className="a-tab"></small>
             </div>
