@@ -113,7 +113,7 @@ export default function Dashboard() {
          </div>
          <div className="container">
             <div className="row justify-content-center">
-               <div className="col-lg-12 col-12">
+               <div className="col-lg-6 col-12">
                   <div className="d-intro">
                      <img
                         src="/introbg.png"
