@@ -146,7 +146,7 @@ export default function Convert() {
          //    settoInput(toValue);
          // }
 
-         const fromRateUsd = fromCoinPrice * fromInput;
+         const fromRateUsd = fromCoinPrice * parseFloat(fromInput);
          const toValue = fromRateUsd / toCoin;
          settoInput(toValue);
 
@@ -268,9 +268,7 @@ export default function Convert() {
                                        min={0}
                                        value={fromInput}
                                        onChange={(e) =>
-                                          setFromInput(
-                                             parseFloat(e.target.value)
-                                          )
+                                          setFromInput(e.target.value)
                                        }
                                        required
                                     />
