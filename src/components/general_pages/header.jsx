@@ -12,7 +12,7 @@ export default function Header() {
             <div className="row align-items-center">
                <div className="col col-lg-1">
                   <div className="logo">
-                     <span>Logo</span>
+                     <span>Bybit<span className="text-warning">Cloned</span></span>
                   </div>
                </div>
                <div className="col col-lg-9">

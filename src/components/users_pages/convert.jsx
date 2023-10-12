@@ -31,7 +31,7 @@ export default function Convert() {
       authorizeUser();
       getCoinBalance();
       // getBTCPrice();
-   }, []);
+   }, [from]);
    useEffect(() => {
       console.log(cryptoPrices);
       if (cryptoPrices.length > 1) {
@@ -224,6 +224,14 @@ export default function Convert() {
          role="status"
       ></div>
    );
+
+   const switchPair = () => {
+      setTo(from);
+      setFrom(to);
+   };
+   const maxBal = () => {
+      setFromInput(balance)
+   }
    return (
       <div className="convert">
          <div className="container">
@@ -242,7 +250,7 @@ export default function Convert() {
                            <div className="c-input-body">
                               <div className="c-input-head text-bold pb-3">
                                  <small>From </small>
-                                 <small>Balance {balance.toFixed(4)} </small>
+                                 <small onClick={maxBal}>Balance {balance.toFixed(4)} </small>
                               </div>
                               <div className="wrap">
                                  <div className="c-coin d-flex">
@@ -264,19 +272,19 @@ export default function Convert() {
                                     <input
                                        type="number"
                                        placeholder="0.00"
-                                       // step={0.00002}
+                                       step={0.00000000002}
                                        min={0}
                                        value={fromInput}
                                        onChange={(e) =>
                                           setFromInput(e.target.value)
                                        }
-                                       required
+                                       // required
                                     />
                                  </div>
                               </div>
                            </div>
                            <div className="c-input-icon text-center">
-                              <i>
+                              <i onClick={switchPair}>
                                  <FaArrowDown />
                               </i>
                            </div>
