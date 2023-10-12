@@ -30,10 +30,10 @@ export default function Convert() {
    useEffect(() => {
       authorizeUser();
       getCoinBalance();
-      getBTCPrice();
+      // getBTCPrice();
    }, []);
    useEffect(() => {
-      console.log(cryptoPrices)
+      console.log(cryptoPrices);
       if (cryptoPrices.length > 1) {
          conversionCalc(cryptoPrices);
       } else {
@@ -68,22 +68,22 @@ export default function Convert() {
          });
    };
 
-   const getBTCPrice = () => {
-      axios
-         .get(`${window.api}/user/get_btc_price`, {
-            headers: {
-               "x-auth-token": token,
-               "Content-Type": "application/json",
-            },
-         })
-         .then((res) => {
-            console.log(res);
-            setBtcPrice(parseInt(res.data));
-         })
-         .catch((err) => {
-            console.log(err);
-         });
-   };
+   // const getBTCPrice = () => {
+   //    axios
+   //       .get(`${window.api}/user/get_btc_price`, {
+   //          headers: {
+   //             "x-auth-token": token,
+   //             "Content-Type": "application/json",
+   //          },
+   //       })
+   //       .then((res) => {
+   //          console.log(res);
+   //          setBtcPrice(parseInt(res.data));
+   //       })
+   //       .catch((err) => {
+   //          console.log(err);
+   //       });
+   // };
 
    const toggleCoinList = (className) => {
       const getElement = document.querySelector(className);
@@ -139,21 +139,22 @@ export default function Convert() {
          const toCoin = data.filter((i) => {
             return i.symbol === to.symbol;
          })[0].current_price;
-   
-         if (data[0].symbol === "btc" || data[1].symbol == "btc") {
-            const fromRateUsd = BtcPrice * fromInput;
-            const toValue = fromRateUsd / toCoin;
-            settoInput(toValue);
-         } else {
+
+         // if (data[0].symbol === "btc" || data[1].symbol == "btc") {
+         //    const fromRateUsd = BtcPrice * fromInput;
+         //    const toValue = fromRateUsd / toCoin;
+         //    settoInput(toValue);
+         // } 
+
             const fromRateUsd = fromCoinPrice * fromInput;
             const toValue = fromRateUsd / toCoin;
             settoInput(toValue);
-         }
+
          // const fromRateUsd = fromCoinPrice * fromInput;
          //    const toValue = fromRateUsd / toCoin;
          //    settoInput(toValue);
       } catch (error) {
-         console.log(error)
+         console.log(error);
       }
    };
 
