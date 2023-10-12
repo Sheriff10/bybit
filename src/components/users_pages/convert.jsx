@@ -18,7 +18,7 @@ export default function Convert() {
       symbol: "usdt",
       image: "https://assets.coingecko.com/coins/images/325/large/Tether.png?1668148663",
    });
-   const [fromInput, setFromInput] = useState(" ");
+   const [fromInput, setFromInput] = useState(0);
    const [toInput, settoInput] = useState(" ");
    const [cryptoPrices, setCryptoPrices] = useState([]);
    const [BtcPrice, setBtcPrice] = useState(0);
@@ -144,11 +144,11 @@ export default function Convert() {
          //    const fromRateUsd = BtcPrice * fromInput;
          //    const toValue = fromRateUsd / toCoin;
          //    settoInput(toValue);
-         // } 
+         // }
 
-            const fromRateUsd = fromCoinPrice * fromInput;
-            const toValue = fromRateUsd / toCoin;
-            settoInput(toValue);
+         const fromRateUsd = fromCoinPrice * fromInput;
+         const toValue = fromRateUsd / toCoin;
+         settoInput(toValue);
 
          // const fromRateUsd = fromCoinPrice * fromInput;
          //    const toValue = fromRateUsd / toCoin;
@@ -264,12 +264,9 @@ export default function Convert() {
                                     <input
                                        type="number"
                                        placeholder="0.00"
-                                       step={0.00002}
-                                       value={
-                                          fromInput == 0
-                                             ? setFromInput(null)
-                                             : fromInput
-                                       }
+                                       // step={0.00002}
+                                       min={0}
+                                       value={fromInput}
                                        onChange={(e) =>
                                           setFromInput(
                                              parseFloat(e.target.value)

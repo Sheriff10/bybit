@@ -124,7 +124,7 @@ export default function Spot() {
                                  <div className="coin-text-con col-12 text-right">
                                     <small> Balance</small> <br />
                                     <balance className="text-bold">
-                                       {i.balance}
+                                       {i.balance.toFixed(6)}
                                     </balance>
                                  </div>
                               </div>
